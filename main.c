@@ -18,14 +18,6 @@ typedef struct {
 
 } Produto;
 
-/*========== ESTRUTURA DE CLIENTE ==========*/
-typedef struct {
-    char nome[50]; // Nome do cliente
-    char cpf[15]; // CPF do cliente
-    int totalVendas; // Quantidade de vendas realizadas
-
-} Cliente;
-
 /*========== ESTRUTURA DE VENDA ==========*/
 typedef struct {
     int id; // ID único da venda
@@ -53,7 +45,6 @@ int main() {
     system("cls"); // Limpar a tela no início( futuramente uma função )
 
     Produto produtos[TAM_PRODUTOS];
-    Cliente clientes[TAM_CLIENTES];
     Venda vendas[TAM_VENDAS];
 
     int opcao;
