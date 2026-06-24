@@ -4,14 +4,20 @@
 
 #define TAM_CLIENTES 10
 
-/*========== ESTRUTURA DE CLIENTE ==========*/
+// ================================
+// ===== ESTRUTURA DE CLIENTE =====
+// ================================
+
 typedef struct {
     char nome[50];      // Nome do cliente
     char cpf[15];       // CPF do cliente
     int totalVendas;    // Quantidade de vendas realizadas
 } Cliente;
 
-/*========== VARIÁVEIS GLOBAIS ==========*/
+// =============================
+// ===== VARIÁVEIS GLOBAIS =====
+// =============================
+
 Cliente clientes[TAM_CLIENTES];
 int qtdClientes = 0;
 int clientesCarregados = 0;

@@ -4,19 +4,13 @@
 #include "clientes.c"
 #include "vendas.c"
 
-#define TAM_PRODUTOS 10 // Tamanho máximo de produtos
-#define TAM_CLIENTES 10 // Tamanho máximo de clientes
 #define TAM_VENDAS 10  // Tamanho máximo de vendas
 
-/*========== ESTRUTURA DO PRODUTO ==========*/ 
-typedef struct {
-    int id; //ID único do produto
-    char nome[50]; // Nome do produto
-    int quantidade; // Quantidade em estoque
-    float preco; // Preco unitário do produto
-    int ativo; // 1=ativo / 0=deletado
-
-} Produto;
+// DEFINICOES DE CORES
+#define VERMELHO "\033[31m"
+#define VERDE "\033[32m"
+#define AMARELO "\033[33m"
+#define RESET "\033[0m"
 
 /*========== ESTRUTURA DE VENDA ==========*/
 typedef struct {
@@ -40,11 +34,20 @@ void menuProdutos(); // Assinatura da funcao que mostra o menu de produtos
 void menuClientes(); // Assinatura da funcao que mostra o menu de clientes
 void menuVendas(); // Assinatura da funcao que mostra o menu de vendas
 
+void limparBuffer() {
+    while (getchar() != '\n');
+}
+
+void pausarSistema() {
+    printf(AMARELO "\nPressione enter para continuar...\n" RESET);
+    getchar();
+}
+
 int main() {
 
     system("cls"); // Limpar a tela no início( futuramente uma função )
 
-    Produto produtos[TAM_PRODUTOS];
+    
     Venda vendas[TAM_VENDAS];
 
     int opcao;
@@ -64,6 +67,7 @@ int main() {
 
         printf("\nEscolha uma opcao: ");
         scanf("%d", &opcao);
+        limparBuffer();
 
         switch(opcao) {
 
@@ -94,9 +98,7 @@ int main() {
 
         // Funcao que pede pro usuario clicar enter
         if(opcao != 0) {
-            printf("\nPressione enter para continuar...");
-            getchar();
-            getchar();
+            pausarSistema();
         }
     } while(opcao != 0);
 
