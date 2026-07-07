@@ -1,33 +1,57 @@
+/*
+===========================================================
+PROJETO: Sistema de Controle de Estoque
+DISCIPLINA: Algoritmos e Programação / Linguagem C
+CURSO: Tecnologia em Sistemas para Internet (TSI)
+INSTITUIÇÃO: IFSP - Campus Araraquara
+
+PROGRAMADORES:
+- Pedro
+- Ryan 
+
+DATA: 26/06/2026
+
+OBJETIVO:
+Desenvolver um sistema de controle de estoque utilizando
+a linguagem C, permitindo o gerenciamento de produtos,
+clientes e vendas. O sistema possibilita cadastrar,
+consultar, atualizar e listar informações, além de
+registrar vendas e realizar persistência dos dados em
+arquivos.
+
+FUNCIONALIDADES:
+- Cadastro de produtos;
+- Busca de produtos por ID e por nome;
+- Atualização de estoque;
+- Relatório de estoque baixo;
+- Exclusão lógica de produtos;
+- Cadastro de clientes;
+- Validação oficial de CPF;
+- Controle do total de vendas por cliente;
+- Cadastro e listagem de vendas;
+- Controle automático de estoque após vendas;
+- Persistência de dados em arquivos binários.
+
+OBSERVAÇÕES:
+O projeto foi desenvolvido de forma modular, sendo
+dividido em arquivos específicos para cada módulo
+(produtos, clientes e vendas), visando maior organização,
+legibilidade e manutenção do código.
+===========================================================
+*/
+
+// BIBLIOTECAS
 #include <stdio.h>
 #include <stdlib.h>
 #include "produtos.c"
 #include "clientes.c"
 #include "vendas.c"
 
-#define TAM_VENDAS 10  // Tamanho máximo de vendas
-
 // DEFINICOES DE CORES
 #define VERMELHO "\033[31m"
 #define VERDE "\033[32m"
 #define AMARELO "\033[33m"
 #define RESET "\033[0m"
-
-/*========== ESTRUTURA DE VENDA ==========*/
-typedef struct {
-    int id; // ID único da venda
-
-    // Conjunto de variáveis que formam data
-    // Foi decomposto em partes para facilitar na validação
-    int dia;
-    int mes;
-    int ano;
-
-    char cpfCliente[15]; // Cpf do cliente associado a venda
-
-    int idProduto; // ID do produto vendido
-    int quantidade; // Quantidade de vendida
-
-} Venda;
 
 // Assinaturas das funções
 void menuProdutos(); // Assinatura da funcao que mostra o menu de produtos
@@ -45,10 +69,7 @@ void pausarSistema() {
 
 int main() {
 
-    system("cls"); // Limpar a tela no início( futuramente uma função )
-
-    
-    Venda vendas[TAM_VENDAS];
+    system("cls"); // Limpar a tela no início
 
     int opcao;
 
@@ -88,12 +109,12 @@ int main() {
 
             case 0:
                 system("cls");
-                printf("\nEncerrando o programa...\n");
+                printf(VERDE "\nEncerrando o programa...\n" RESET);
                 break;
 
             default:
                 system("cls");
-                printf("\nOpcao invalida! Tente novamente.\n");
+                printf(VERMELHO "\nOpcao invalida! Tente novamente.\n" RESET);
         }
 
         // Funcao que pede pro usuario clicar enter
@@ -103,5 +124,4 @@ int main() {
     } while(opcao != 0);
 
     return 0;
-
 }
